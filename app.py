@@ -75,7 +75,7 @@ st.markdown("""
 # Header
 # ----------------------------
 st.markdown("""
-    <h1 style='text-align: center;'>🦙 Chat with Umar's LLaMA 3.2 Assistant</h1>
+    <h1 style='text-align: center;'>🦙 Chat with Umar's Assistant</h1>
     <p style='text-align: center; color: #aaaaaa;'>Dark Mode | LangChain + Streamlit + Ollama</p>
     <hr/>
 """, unsafe_allow_html=True)
@@ -116,23 +116,22 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 # ----------------------------
-# Chat Input & Response
+# Chat Input & Response Handling
 # ----------------------------
 user_input = st.chat_input("💬 Type your message...")
 
 if user_input:
-    with st.chat_message("user"):
-        st.markdown(f"**You:** {user_input}")
     with st.spinner("🧠 Thinking..."):
         response = chain.invoke({"question": user_input})
         st.session_state.chat_history.append(("You", user_input))
         st.session_state.chat_history.append(("LLaMA", response))
-    with st.chat_message("assistant"):
-        st.markdown(f"🦙 {response}")
 
 # ----------------------------
 # Show Chat History
 # ----------------------------
 for speaker, msg in st.session_state.chat_history:
     with st.chat_message("user" if speaker == "You" else "assistant"):
-        st.markdown(f"**{speaker}:** {msg}")
+        if speaker == "You":
+            st.markdown(f"**{speaker}:** {msg}")
+        else:
+            st.markdown(f"🦙 **Assistant:** {msg}")
