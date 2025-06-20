@@ -11,8 +11,8 @@ from langchain_core.output_parsers import StrOutputParser
 load_dotenv()
 os.environ["LANGSMITH_TRACING"] = "true"
 os.environ["LANGSMITH_ENDPOINT"] = "https://api.smith.langchain.com"
-os.environ["LANGSMITH_API_KEY"] = "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"
-os.environ["LANGSMITH_PROJECT"] = "pr-scholarly-oatmeal-52"
+os.environ["LANGSMITH_API_KEY"] = ""
+os.environ["LANGSMITH_PROJECT"] = ""
 
 # ----------------------------
 # Page Config
